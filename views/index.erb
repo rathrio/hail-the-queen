@@ -42,6 +42,11 @@
   </div>
 
   <script>
+    function play() {
+      var audio = document.getElementById('audio');
+      audio.play();
+    }
+
     var counter = document.getElementById('counter');
     var logo = document.getElementById('logo');
 
@@ -53,8 +58,11 @@
       });
       request.open('POST', '/increment');
       request.send();
+      play();
     })
   </script>
+
+<audio id="audio" src="https://www.parliament.uk/audio/images/bigben-images/hourlychimebeg.mp3" ></audio>
 </body>
 
 </html>
