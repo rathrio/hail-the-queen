@@ -1,0 +1,23 @@
+body {
+  background-color: #f9f9f9;
+  color: #2a2825;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+}
+
+.content {
+  width: 300px;
+  margin: 50px auto;
+}
+
+#logo {
+  cursor: pointer;
+}
+
+#logo:hover {
+  box-shadow: 0 4px 15px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+}
+
+#logo:active {
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+}

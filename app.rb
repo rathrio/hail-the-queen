@@ -7,11 +7,7 @@ class DB
 
   def initialize(path: './hail_the_queen.json')
     @path = path
-
-    unless File.exist?(path)
-      File.write(path, { count: 0 }.to_json )
-    end
-
+    File.write(path, { count: 0 }.to_json) unless File.exist?(path)
     @db = JSON.parse(File.read(path))
   end
 
@@ -22,6 +18,10 @@ class DB
   def increment_count
     db['count'] += 1
     write!
+    to_json
+  end
+
+  def to_json
     db.to_json
   end
 
@@ -33,7 +33,12 @@ end
 $db = DB.new
 
 get '/' do
-  erb :index, locals: { count: $db.count }
+  send_file File.join(settings.public_folder, 'index.html')
+end
+
+get '/db' do
+  content_type :json
+  $db.to_json
 end
 
 post '/increment' do
