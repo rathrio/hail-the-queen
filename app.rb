@@ -31,6 +31,7 @@ class DB
 end
 
 $db = DB.new
+$connections = []
 
 get '/' do
   send_file File.join(settings.public_folder, 'index.html')
@@ -43,5 +44,16 @@ end
 
 post '/increment' do
   content_type :json
+  $connections.each do |out|
+    out << "data: foobar \n\n"
+  end
   $db.increment_count
+end
+
+get '/subscribe' do
+  content_type 'text/event-stream'
+  stream(:keep_open) do |out|
+    $connections << out
+    out.callback { $connections.delete(out) }
+  end
 end
