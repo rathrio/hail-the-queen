@@ -11,5 +11,5 @@ bundle install
 ## Running
 
 ```
-ruby app.rb
+rackup
 ```
