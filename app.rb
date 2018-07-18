@@ -34,6 +34,8 @@ $db = DB.new
 $connections = []
 
 class App < Sinatra::Base
+  set :server, 'thin'
+
   get '/' do
     send_file File.join(settings.public_folder, 'index.html')
   end
